@@ -29,7 +29,7 @@ const addPost = async (req, res) => {
 
     const newPost = await postModel.create({
       user,
-      image,
+      image: image.path,
       caption,
     });
 

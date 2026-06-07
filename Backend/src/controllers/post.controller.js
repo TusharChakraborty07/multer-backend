@@ -28,7 +28,7 @@ const addPost = async (req, res) => {
     const image = req.file;
 
     const newPost = await postModel.create({
-      user,
+      // user,
       image: image.path,
       caption,
     });

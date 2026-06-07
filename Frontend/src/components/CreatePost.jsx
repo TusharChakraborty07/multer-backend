@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
+  const navigate = useNavigate();
+
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -29,7 +32,9 @@ const CreatePost = () => {
         "http://localhost:3000/addPost",
         formData,
       );
+
       console.log(response.data);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -41,12 +46,21 @@ const CreatePost = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-white rounded-3xl shadow-sm border border-gray-100 p-6 space-y-5"
       >
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Create Post</h1>
+        <div className="flex items-start justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Create Post</h1>
 
-          <p className="text-sm text-gray-500 mt-1">
-            Share your thoughts with the world.
-          </p>
+            <p className="text-sm text-gray-500 mt-1">
+              Share your thoughts with the world.
+            </p>
+          </div>
+
+          <Link
+            to="/"
+            className="px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium hover:bg-gray-100 transition"
+          >
+            ← Back
+          </Link>
         </div>
 
         <div>

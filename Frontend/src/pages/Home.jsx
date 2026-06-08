@@ -1,7 +1,8 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+
 import Navbar from "../components/Navbar";
 import PostCard from "../components/PostCard";
-import axios from "axios";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);

@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const userModel = require("../models/user.model");
 
 // Get All User
@@ -20,7 +21,7 @@ const getAllUser = async (req, res) => {
 };
 
 // Get All User
-const addUser = async (req, res) => {
+const registerUser = async (req, res) => {
   try {
     const { email, password, post } = req.body;
 
@@ -44,4 +45,4 @@ const addUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUser, addUser };
+module.exports = { getAllUser, registerUser };

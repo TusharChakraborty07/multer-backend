@@ -31,10 +31,18 @@ const registerUser = async (req, res) => {
       post,
     });
 
+    const token = await jwt.sign(
+      {
+        id: newUser._id,
+      },
+      process.env.JWT_SECRET,
+    );
+
     res.status(201).json({
       success: true,
       message: "Users created successfully",
       users: newUser,
+      token,
     });
   } catch (error) {
     return res.status(500).json({

@@ -10,7 +10,9 @@ const Home = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/getPost");
+        const res = await axios.get("http://localhost:3000/getPost", {
+          withCredentials: true,
+        });
 
         setPosts(res.data.data);
       } catch (error) {

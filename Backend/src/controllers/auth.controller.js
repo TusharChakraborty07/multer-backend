@@ -25,18 +25,31 @@ const registerUser = async (req, res) => {
   try {
     const { email, password, post } = req.body;
 
+    const existUser = await userModel.findOne({ email });
+    console.log(existUser);
+
+    if (existUser) {
+      return res.status(409).json({
+        success: false,
+        message: "User already exists",
+        users: null,
+      });
+    }
+
     const newUser = await userModel.create({
       email,
       password,
       post,
     });
 
-    const token = await jwt.sign(
+    const token = jwt.sign(
       {
         id: newUser._id,
       },
       process.env.JWT_SECRET,
     );
+
+    res.cookie("token", token);
 
     res.status(201).json({
       success: true,
@@ -47,8 +60,7 @@ const registerUser = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Users not fetched",
-      users: error.message,
+      message: error.message,
     });
   }
 };

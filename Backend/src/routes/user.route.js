@@ -5,6 +5,6 @@ const Demo = require("../middleware/demo");
 const userRouter = Router();
 
 userRouter.get("/", Demo, getAllUser);
-userRouter.post("/", Demo, registerUser);
+userRouter.post("/register", Demo, registerUser);
 
 module.exports = userRouter;
